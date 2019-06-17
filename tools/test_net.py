@@ -21,6 +21,8 @@ from nets.mobilenet_v1 import mobilenetv1
 
 import torch
 
+import pdb
+
 
 def parse_args():
     """
@@ -100,8 +102,10 @@ if __name__ == '__main__':
     tag = tag if tag else 'default'
     filename = tag + '/' + filename
 
+    
     imdb = get_imdb(args.imdb_name)
     imdb.competition_mode(args.comp_mode)
+    # pdb.set_trace()
 
     # load network
     if args.net == 'vgg16':
@@ -138,4 +142,5 @@ if __name__ == '__main__':
         print(('Loading initial weights from {:s}').format(args.weight))
         print('Loaded.')
 
+    pdb.set_trace()
     test_net(net, imdb, filename, max_per_image=args.max_per_image)

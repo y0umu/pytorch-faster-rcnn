@@ -15,6 +15,8 @@ from datasets.coco import coco
 
 import numpy as np
 
+import pdb
+
 # Set up voc_<year>_<split>
 for year in ['2007', '2012']:
     for split in ['train', 'val', 'trainval', 'test']:
@@ -43,6 +45,8 @@ def get_imdb(name):
     """Get an imdb (image database) by name."""
     if name not in __sets:
         raise KeyError('Unknown dataset: {}'.format(name))
+
+    # pdb.set_trace()
     return __sets[name]()
 
 

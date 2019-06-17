@@ -24,7 +24,7 @@ from model.config import cfg, get_output_dir
 from model.bbox_transform import clip_boxes, bbox_transform_inv
 
 import torch
-
+import pdb
 
 def _get_image_blob(im):
     """Converts an image into a network input.
@@ -45,7 +45,7 @@ def _get_image_blob(im):
     processed_ims = []
     im_scale_factors = []
 
-    for target_size in cfg.TEST.SCALES:
+    for target_size in cfg.TEST.SCALES:   # cfg.TEST.SCALES实际上是保存目标短边长度的list
         im_scale = float(target_size) / float(im_size_min)
         # Prevent the biggest axis from being more than MAX_SIZE
         if np.round(im_scale * im_size_max) > cfg.TEST.MAX_SIZE:
@@ -59,6 +59,7 @@ def _get_image_blob(im):
             interpolation=cv2.INTER_LINEAR)
         im_scale_factors.append(im_scale)
         processed_ims.append(im)
+    pdb.set_trace()
 
     # Create a blob to hold the input images
     blob = im_list_to_blob(processed_ims)
@@ -138,6 +139,7 @@ def test_net(net, imdb, weights_filename, max_per_image=100, thresh=0.):
 
     for i in range(num_images):
         im = cv2.imread(imdb.image_path_at(i))
+        pdb.set_trace()
 
         _t['im_detect'].tic()
         scores, boxes = im_detect(net, im)

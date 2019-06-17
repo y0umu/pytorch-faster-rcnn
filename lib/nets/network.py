@@ -7,6 +7,7 @@ from __future__ import absolute_import
 from __future__ import division
 from __future__ import print_function
 
+import pdb
 import math
 import numpy as np
 
@@ -326,7 +327,7 @@ class Network(nn.Module):
         # rpn
         self.rpn_net = nn.Conv2d(
             self._net_conv_channels, cfg.RPN_CHANNELS, [3, 3], padding=1)
-
+        
         self.rpn_cls_score_net = nn.Conv2d(cfg.RPN_CHANNELS,
                                            self._num_anchors * 2, [1, 1])
 
